@@ -18,11 +18,11 @@ variables:
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
+  pool : cicdagent
 
 stages:
 - stage: Build
   displayName: Build and push stage
-  pool : cicdagent
   jobs:
   - job: Build
     displayName: Build
