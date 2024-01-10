@@ -7,7 +7,6 @@ trigger:
 
 resources:
 - repo: self
-pool: cicdagent
 
 variables:
   # Container registry service connection established during pipeline creation
@@ -27,6 +26,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
+      name: cicdagent
       vmImage: $(vmImageName)
     steps:
     - task: Docker@2
