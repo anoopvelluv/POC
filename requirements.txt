@@ -1,0 +1,4 @@
+salabim~=23.3.12
+pywebview~=4.3.3
+pandas~=1.4.2
+pysimplegui~=4.60.5
