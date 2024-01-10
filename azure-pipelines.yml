@@ -22,6 +22,7 @@ variables:
 stages:
 - stage: Build
   displayName: Build and push stage
+  pool : cicdagent
   jobs:
   - job: Build
     displayName: Build
