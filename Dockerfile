@@ -10,6 +10,6 @@ RUN pip install -r requirements.txt
 
 RUN pip install greenlet
 
-CMD ["python","app.py"]
+CMD ["python","simulation.py"]
 
 COPY . /app/
