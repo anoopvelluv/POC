@@ -1,6 +1,6 @@
 FROM python:3.11
 
-COPY requirements.txt .
+COPY requirements.txt /app/requirements.txt
 
 WORKDIR /app
 
@@ -10,6 +10,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 RUN pip install greenlet
 
-COPY . .
+COPY . /app
 
 CMD ["python","simulation.py"]
