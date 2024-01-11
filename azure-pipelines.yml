@@ -37,16 +37,3 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-  - job: DeployToACI
-    displayName: DeployToACI
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - task: AzureCLI@2
-      displayName: 'Deploy to ACI'
-      inputs:
-        azureSubscription: 'YourAzureSubscription' # Use the service connection to your Azure subscription
-        scriptType: 'bash'
-        scriptLocation: 'inlineScript'
-        inlineScript: |
-          az container create --resource-group YourResourceGroup --name YourACIName --image youracr.azurecr.io/yourimage:latest --registry-login-server youracr.azurecr.io --registry-username $(acrUsername) --registry-password $(acrPassword) --dns-name-label YourDNSLabel --ports 80
