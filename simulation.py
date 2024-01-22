@@ -34,7 +34,7 @@ clerk = Clerk()
 waitingline = sim.Queue("waitingline")
 
 env.run(till=50)
-print("Statistics :======>>>> DEMO ")
+print("Statistics : POC DEMO ")
 waitingline.print_statistics()
 
 exit(0)
