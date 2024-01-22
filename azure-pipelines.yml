@@ -18,6 +18,7 @@ variables:
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
+  DOCKER_BUILDKIT: 1
 
 stages:
 - stage: Build
