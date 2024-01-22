@@ -14,8 +14,7 @@ variables:
   imageRepository: 'simulationimage'
   containerRegistry: 'cicdpoc.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-#  tag: '$(Build.BuildId)'
-  tag: 'latest'
+  tag: '$(Build.BuildId)'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -34,7 +33,7 @@ stages:
       inputs:
         containerRegistry: '$(dockerRegistryServiceConnection)'
         command: 'login'
-    - script: "docker pull $(containerRegistry)/$(imageRepository):$(tag)"
+    - script: "docker pull $(containerRegistry)/$(imageRepository):$(( $(tag) - 1 ))"
       displayName: Pull latest image for layer cashing
       continueOnError: true
 
@@ -44,7 +43,7 @@ stages:
         command: build
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
-        arguments: '--cache-from=$(containerRegistry)/$(imageRepository):$(tag)'
+        arguments: '--cache-from=$(containerRegistry)/$(imageRepository):$(( $(tag) - 1 ))'
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
