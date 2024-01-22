@@ -4,10 +4,12 @@ WORKDIR /app
 
 COPY requirements.txt /app/requirements.txt
 
-#RUN pip install --upgrade pip
+RUN pip install --upgrade pip
 
-#RUN pip install greenlet
+RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements.txt
+
+RUN pip install greenlet
 
 COPY . /app
 
-CMD ["python", "pip install -r requirements.txt", "simulation.py"]
+CMD ["python","simulation.py"]
