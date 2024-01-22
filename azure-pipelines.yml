@@ -43,7 +43,7 @@ stages:
         command: build
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
-        arguments: '--cache-from=$(containerRegistry)/$(imageRepository):$(( $(tag) - 1 ))'
+        arguments: '--cache-from=$(containerRegistry)/$(imageRepository)'
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
