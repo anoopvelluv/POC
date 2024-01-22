@@ -33,7 +33,7 @@ stages:
       inputs:
         containerRegistry: '$(dockerRegistryServiceConnection)'
         command: 'login'
-    - script: "docker pull $(repositoryAddress)/$(imageRepository):latest"
+    - script: "docker pull $(repositoryAddress)/$(imageRepository):$(tag)"
       displayName: Pull latest image for layer cashing
       continueOnError: true
 
@@ -43,7 +43,7 @@ stages:
         command: build
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
-        arguments: '--cache-from=$(repositoryAddress)/$(imageRepository):latest'
+        arguments: '--cache-from=$(repositoryAddress)/$(imageRepository):$(tag)'
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
