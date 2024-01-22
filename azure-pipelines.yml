@@ -14,7 +14,7 @@ variables:
   imageRepository: 'simulationimage'
   containerRegistry: 'cicdpoc.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: '$(Build.BuildId) latest'
+  tag: '$(Build.BuildId)'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
