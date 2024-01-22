@@ -12,4 +12,4 @@ COPY requirements.txt /app/requirements.txt
 
 COPY . /app
 
-CMD ["pip install -r requirements.txt", "python","simulation.py"]
+CMD ["python", "pip install -r requirements.txt", "simulation.py"]
