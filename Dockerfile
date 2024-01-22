@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY requirements.txt /app/requirements.txt
 
-RUN pip install --upgrade pip
+#RUN pip install --upgrade pip
 
 RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements.txt
 

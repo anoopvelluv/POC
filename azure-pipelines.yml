@@ -36,6 +36,5 @@ stages:
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
-        arguments: '--cache-from=$(imageRepository):latest' 
         tags: |
           $(tag)
