@@ -6,8 +6,6 @@ COPY requirements.txt /app/requirements.txt
 
 #RUN pip install --upgrade pip
 
-#RUN pip install -r requirements.txt
-
 #RUN pip install greenlet
 
 COPY . /app
