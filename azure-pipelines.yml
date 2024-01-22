@@ -33,7 +33,7 @@ stages:
       inputs:
         containerRegistry: '$(dockerRegistryServiceConnection)'
         command: 'login'
-    - script: "docker pull $(containerRegistry)/$(imageRepository):$(( $(tag) - 1 ))"
+    - script: "docker pull $(containerRegistry)/$(imageRepository)"
       displayName: Pull latest image for layer cashing
       continueOnError: true
 
