@@ -31,6 +31,7 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - task: Docker@2
+      condition: false
       inputs:
         containerRegistry: '$(dockerRegistryServiceConnection)'
         command: 'login'
