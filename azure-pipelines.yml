@@ -27,7 +27,7 @@
     DOCKER_BUILDKIT: 1
 
   stages:
-  - stage: terraform-base
+  - stage: terraform_base
     jobs:
       - template: templates/terraform-apply.yaml
         parameters:
@@ -38,7 +38,7 @@
           terraform_version: ${{ variables.terraform_version }}
 
   - stage: Build
-    dependsOn: [ terraform-base ]
+    dependsOn: [ terraform_base ]
     displayName: Build and push stage
     jobs:
       - template: templates/docker.yaml
