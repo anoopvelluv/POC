@@ -1,5 +1,5 @@
   jobs:
-    - job: terraform-apply
+    - job: terraform_apply
       steps:
         - task: TerraformInstaller@0
           displayName: 'Install Terraform'
