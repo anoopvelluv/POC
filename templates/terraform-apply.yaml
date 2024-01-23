@@ -2,12 +2,12 @@
     - job: terraform-apply
       steps:
         - task: TerraformInstaller@0
-          displayName: Install Terraform
+          displayName: 'Install Terraform'
           inputs:
             terraformVersion: '${{ parameters.terraform_version }}'
 
         - task: TerraformTaskV2@2
-          displayName: Init Terraform
+          displayName: 'Init Terraform'
           inputs:
             provider: azurerm
             command: 'init'
