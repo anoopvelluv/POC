@@ -1,0 +1,29 @@
+  jobs:
+    - job: terraform-apply
+      steps:
+        - task: TerraformInstaller@0
+          displayName: Install Terraform
+          inputs:
+            terraformVersion: '${{ parameters.terraform_version }}'
+
+        - task: TerraformTaskV2@2
+          displayName: Init Terraform
+          inputs:
+            provider: azurerm
+            command: 'init'
+            backendServiceArm: '${{ parameters.backendServiceArm }}'
+            backendAzureRmResourceGroupName: '${{ parameters.backendAzureRmResourceGroupName }}'
+            workingDirectory: '${{ parameters.workingDirectory }}'
+
+        - task: TerraformTaskV2@2
+          displayName: 'Terraform Plan'
+          inputs:
+            provider: azurerm
+            command: 'plan'
+            commandOptions: '-var build_id=$(Build.BuildId) -input=false -var-file="../tfvars/${{ parameters.environment }}/${{ parameters.environment }}.tfvars"'
+            environmentServiceNameAzureRM: '${{ parameters.backendServiceArm }}'
+            workingDirectory: '${{ parameters.workingDirectory }}'
+
+
+
+
