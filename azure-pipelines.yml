@@ -16,7 +16,7 @@
     dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
     tag: '$(Build.BuildId)'
 
-    backendServiceArm: 'simulationdeployPOC-rg'
+    backendServiceArm: 'Azure subscription 1'
     backendAzureRmResourceGroupName: 'simulationdeployPOC-rg'
 
     environment: 'development'
