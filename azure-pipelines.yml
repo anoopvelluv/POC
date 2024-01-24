@@ -16,8 +16,8 @@
     dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
     tag: '$(Build.BuildId)'
 
-    backendServiceArm: 'Azure subscription 1'
-    backendAzureRmResourceGroupName: 'simulationdeployPOC-rg'
+    backendServiceArm: 'Azure subscription 1 (7122eee9-66c8-4e94-8a9a-56733a94bc91)'
+    backendAzureRmResourceGroupName: 'cicdpocrg'
 
     environment: 'development'
     terraform_version: '1.0.10'
