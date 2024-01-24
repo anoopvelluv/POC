@@ -18,6 +18,9 @@
 
     backendServiceArm: 'Azure subscription 1 (7122eee9-66c8-4e94-8a9a-56733a94bc91)'
     backendAzureRmResourceGroupName: 'cicdpocrg'
+    backendAzureRmStorageAccountName: 'terraformpocsa_1706108521764'
+    backendAzureRmContainerName: 'terraform-state'
+    backendAzureRmKey: 'terraform.tfstate'
 
     environment: 'development'
     terraform_version: '1.0.10'
@@ -34,6 +37,9 @@
           backendServiceArm: '${{ variables.backendServiceArm }}'
           backendAzureRmResourceGroupName: '${{ variables.backendAzureRmResourceGroupName }}'
           workingDirectory: '$(System.DefaultWorkingDirectory)/terraform_cr/'
+          backendAzureRmStorageAccountName: '${{ variables.backendAzureRmStorageAccountName }}'
+          backendAzureRmContainerName: '${{ variables.backendAzureRmContainerName }}'
+          backendAzureRmKey: '${{ variables.backendAzureRmKey }}'
           environment: ${{ variables.environment }}
           terraform_version: ${{ variables.terraform_version }}
 

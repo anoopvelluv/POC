@@ -14,6 +14,9 @@
             backendServiceArm: '${{ parameters.backendServiceArm }}'
             backendAzureRmResourceGroupName: '${{ parameters.backendAzureRmResourceGroupName }}'
             workingDirectory: '${{ parameters.workingDirectory }}'
+            backendAzureRmStorageAccountName: '${{ parameters.backendAzureRmStorageAccountName }}'
+            backendAzureRmContainerName: '${{ parameters.backendAzureRmContainerName }}'
+            backendAzureRmKey: '${{ parameters.backendAzureRmKey }}'
 
         - task: TerraformTaskV2@2
           displayName: 'Terraform Plan'
