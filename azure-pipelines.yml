@@ -18,7 +18,7 @@
 
     backendServiceArm: 'Azure subscription 1 (7122eee9-66c8-4e94-8a9a-56733a94bc91)'
     backendAzureRmResourceGroupName: 'cicdpocrg'
-    backendAzureRmStorageAccountName: 'terraformpocsa_1706108521764'
+    backendAzureRmStorageAccountName: 'terraformpocsa'
     backendAzureRmContainerName: 'terraform-state'
     backendAzureRmKey: 'tf/terraform.tfstate'
 
