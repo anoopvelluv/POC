@@ -20,7 +20,7 @@
     backendAzureRmResourceGroupName: 'cicdpocrg'
     backendAzureRmStorageAccountName: 'terraformpocsa_1706108521764'
     backendAzureRmContainerName: 'terraform-state'
-    backendAzureRmKey: 'terraform.tfstate'
+    backendAzureRmKey: 'tf/terraform.tfstate'
 
     environment: 'development'
     terraform_version: '1.0.10'
