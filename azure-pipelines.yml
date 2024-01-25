@@ -9,13 +9,13 @@
     - repo: self
 
   variables:
-    # Container registry service connection established during pipeline creation
-    dockerRegistryServiceConnection: 'a4a24aca-f1e6-4f77-b5a7-3679b2180967'
-    imageRepository: 'simulationimage'
-    containerRegistry: 'cicdpoc.azurecr.io'
+    #Container registry service connection established during pipeline creation
+    dockerRegistryServiceConnection: 'ACRServiceConnection'
+    imageRepository: 'simulationDeployPOCACR'
     dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
     tag: '$(Build.BuildId)'
 
+    #Storage Account Details for storing state file
     backendServiceArm: 'MyServiceConnection'
     backendAzureRmResourceGroupName: 'cicdpocrg'
     backendAzureRmStorageAccountName: 'terraformpocsa'
