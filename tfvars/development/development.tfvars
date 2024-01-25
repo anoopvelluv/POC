@@ -1,3 +1,3 @@
 rg_name = "simulationDeployPOC-rg"
-acr_name = "cicdpoc"
+acr_name = "simulationDeployPOCACR"
 location = "uksouth"
