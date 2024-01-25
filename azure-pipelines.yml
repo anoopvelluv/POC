@@ -25,6 +25,7 @@
     environment: 'development'
     terraform_version: '1.0.10'
 
+
     # Agent VM image name
     vmImageName: 'ubuntu-latest'
     DOCKER_BUILDKIT: 1
