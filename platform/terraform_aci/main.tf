@@ -16,7 +16,7 @@ resource "azurerm_container_group" "aci" {
 
   identity {
     type = "UserAssigned"
-    identity_ids = ['myACRId']
+    identity_ids = ["myACRId"]
   }
 
   container {
