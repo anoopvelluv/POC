@@ -58,8 +58,8 @@
     dependsOn: [ Build ]
     displayName:  Deploy Image to Container
     jobs:
-      -template: templates/terraform-apply.yaml
-      parameters:
+      - template: templates/terraform-apply.yaml
+        parameters:
           backendServiceArm: '${{ variables.backendServiceArm }}'
           backendAzureRmResourceGroupName: '${{ variables.backendAzureRmResourceGroupName }}'
           workingDirectory: '$(System.DefaultWorkingDirectory)/platform/terraform_aci/'
