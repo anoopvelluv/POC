@@ -59,7 +59,7 @@
           tag: ${{ variables.tag }}
 
   - stage: terraform_aci_deploy
-    dependsOn: [ Build ]
+#    dependsOn: [ Build ]
     displayName:  Deploy Image to Container
     jobs:
       - template: templates/terraform-apply.yaml
