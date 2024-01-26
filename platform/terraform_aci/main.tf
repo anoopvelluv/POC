@@ -16,7 +16,7 @@ resource "azurerm_container_group" "aci" {
 
   container {
     name   = "pocimagedemo"
-    image  = "${data.azurerm_container_registry.acr.login_server}/aci:${var.build_id}"
+    image  = "${data.azurerm_container_registry.acr.login_server}/simulationdeploypocacr:${var.build_id}"
     cpu    = "0.5"
     memory = "1.5"
 
