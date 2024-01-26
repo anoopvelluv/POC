@@ -33,7 +33,7 @@
 
   stages:
   - stage: terraform_base
-    condition: eq('${{ SkipSteps }}', false)
+    condition: eq('${{ variables.SkipSteps }}', false)
     jobs:
       - template: templates/terraform-apply.yaml
         parameters:
@@ -48,7 +48,7 @@
 
   - stage: Build
     dependsOn: [ terraform_base ]
-    condition: eq('${{ SkipSteps }}', false)
+    condition: eq('${{ variables.SkipSteps }}', false)
     displayName: Build and push stage
     jobs:
       - template: templates/docker.yaml
