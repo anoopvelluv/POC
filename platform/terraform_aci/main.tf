@@ -14,6 +14,11 @@ resource "azurerm_container_group" "aci" {
   ip_address_type     = "Public"
   os_type= "Linux"
 
+  identity {
+    type = "UserAssigned"
+    identity_ids = ['myACRId']
+  }
+
   container {
     name   = "pocimagedemo"
     image  = "${data.azurerm_container_registry.acr.login_server}/simulationdeploypocacr:${var.build_id}"
