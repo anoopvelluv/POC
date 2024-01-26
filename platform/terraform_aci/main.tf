@@ -1,6 +1,5 @@
 data "azurerm_resource_group" "rg" {
   name     = var.rg_name
-  location = var.location
 }
 
 data "azurerm_container_registry" "acr" {
@@ -11,7 +10,7 @@ data "azurerm_container_registry" "acr" {
 resource "azurerm_container_group" "aci" {
   name  = "docker-container-instance"
   resource_group_name = data.azurerm_resource_group.rg.name
-  location = data.azurerm_resource_group.rg.location
+  location = var.location
   ip_address_type     = "public"
   os_type= "Linux"
 
