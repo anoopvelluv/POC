@@ -29,11 +29,8 @@
     vmImageName: 'ubuntu-latest'
     DOCKER_BUILDKIT: 1
 
-    SkipSteps: true
-
   stages:
   - stage: terraform_base
-    condition: eq('${{ variables.SkipSteps }}', false)
     jobs:
       - template: templates/terraform-apply.yaml
         parameters:
@@ -48,7 +45,6 @@
 
   - stage: Build
     dependsOn: [ terraform_base ]
-    condition: eq('${{ variables.SkipSteps }}', false)
     displayName: Build and push stage
     jobs:
       - template: templates/docker.yaml
@@ -59,7 +55,7 @@
           tag: ${{ variables.tag }}
 
   - stage: terraform_aci_deploy
-#    dependsOn: [ Build ]
+    dependsOn: [ Build ]
     displayName:  Deploy Image to Container
     jobs:
       - template: templates/terraform-apply.yaml
