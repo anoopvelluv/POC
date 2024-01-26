@@ -20,7 +20,7 @@ data "azurerm_client_config" "clientconfig" {
 }
 
 resource "azurerm_role_assignment" "assignrole" {
-  scope                = data.azurerm_container_registry.acr.location
+  scope                = data.azurerm_container_registry.acr.id
   role_definition_name = "acrpull"
   principal_id         = data.azurerm_client_config.clientconfig.object_id
 }
