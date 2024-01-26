@@ -11,7 +11,7 @@ resource "azurerm_container_group" "aci" {
   name  = "docker-container-instance"
   resource_group_name = data.azurerm_resource_group.rg.name
   location = var.location
-  ip_address_type     = "public"
+  ip_address_type     = "Public"
   os_type= "Linux"
 
   container {
