@@ -23,7 +23,7 @@
           inputs:
             provider: azurerm
             command: 'plan'
-            commandOptions: '-var build_id=$(Build.BuildId) -input=false -var-file="../tfvars/${{ parameters.environment }}/${{ parameters.environment }}.tfvars"'
+            commandOptions: '-var build_id=$(Build.BuildId) -input=false -var-file="../../tfvars/${{ parameters.environment }}/${{ parameters.environment }}.tfvars"'
             environmentServiceNameAzureRM: '${{ parameters.backendServiceArm }}'
             workingDirectory: '${{ parameters.workingDirectory }}'
 
@@ -33,7 +33,7 @@
           inputs:
             provider: azurerm
             command: 'apply'
-            commandOptions: '-var build_id=$(Build.BuildId) -input=false -auto-approve  -var-file="../tfvars/${{ parameters.environment }}/${{ parameters.environment }}.tfvars"'
+            commandOptions: '-var build_id=$(Build.BuildId) -input=false -auto-approve  -var-file="../../tfvars/${{ parameters.environment }}/${{ parameters.environment }}.tfvars"'
             environmentServiceNameAzureRM: '${{ parameters.backendServiceArm }}'
             workingDirectory: '${{ parameters.workingDirectory }}'
 
