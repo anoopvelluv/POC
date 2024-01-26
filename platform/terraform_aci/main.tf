@@ -19,6 +19,11 @@ resource "azurerm_container_group" "aci" {
     image  = "${data.azurerm_container_registry.acr.login_server}/aci:${var.build_id}"
     cpu    = "0.5"
     memory = "1.5"
+
+     ports {
+      port     = []
+      protocol = []
+    }
   }
 
 }
