@@ -21,6 +21,7 @@
     backendAzureRmStorageAccountName: 'terraformpocsa'
     backendAzureRmContainerName: 'terraform-state'
     backendAzureRmKey: 'tf/terraform.tfstate'
+    backendAzureRmKeyAci: 'tf/terraform-aci.tfstate'
 
     environment: 'development'
     terraform_version: '1.0.10'
@@ -65,6 +66,6 @@
           workingDirectory: '$(System.DefaultWorkingDirectory)/platform/terraform_aci/'
           backendAzureRmStorageAccountName: '${{ variables.backendAzureRmStorageAccountName }}'
           backendAzureRmContainerName: '${{ variables.backendAzureRmContainerName }}'
-          backendAzureRmKey: '${{ variables.backendAzureRmKey }}'
+          backendAzureRmKey: '${{ variables.backendAzureRmKeyAci }}'
           environment: ${{ variables.environment }}
           terraform_version: ${{ variables.terraform_version }}
