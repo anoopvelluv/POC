@@ -1,13 +1,13 @@
   jobs:
-    - job: terraform_apply
+    - job: terraform_validate_and_apply
       steps:
         - task: TerraformInstaller@0
-          displayName: 'Install Terraform'
+          displayName: 'Install'
 #          inputs:
 #            terraformVersion: '${{ parameters.terraform_version }}'
 
         - task: TerraformTaskV2@2
-          displayName: 'Init Terraform'
+          displayName: 'Init'
           inputs:
             provider: azurerm
             command: 'init'
@@ -19,7 +19,7 @@
             backendAzureRmKey: '${{ parameters.backendAzureRmKey }}'
 
         - task: TerraformTaskV2@2
-          displayName: 'Terraform Plan'
+          displayName: 'Plan'
           inputs:
             provider: azurerm
             command: 'plan'
@@ -28,7 +28,7 @@
             workingDirectory: '${{ parameters.workingDirectory }}'
 
         - task: TerraformTaskV2@2
-          displayName: 'Terraform Apply'
+          displayName: 'Apply'
           condition: succeeded()
           inputs:
             provider: azurerm
