@@ -16,7 +16,7 @@ resource "azurerm_container_group" "aci" {
 
   identity {
     type = "UserAssigned"
-    identity_ids = ["myACRId"]
+    identity_ids = ["/subscriptions/7122eee9-66c8-4e94-8a9a-56733a94bc91/resourcegroups/cicdpocrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myACRId"]
   }
 
   container {
