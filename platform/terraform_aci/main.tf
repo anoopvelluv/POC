@@ -21,7 +21,7 @@ data "azurerm_client_config" "clientconfig" {
 
 resource "azurerm_role_assignment" "basic" {
   scope                = data.azurerm_subscription.primary.id
-  role_definition_name = "Writer"
+  role_definition_name = "Contributor"
   principal_id         = data.azurerm_client_config.clientconfig.object_id
 }
 
