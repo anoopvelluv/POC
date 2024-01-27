@@ -19,25 +19,27 @@ data "azurerm_subscription" "primary" {
 data "azurerm_client_config" "clientconfig" {
 }
 
-resource "azurerm_role_definition" "customrole" {
-  role_definition_id = "00000000-0000-0000-0000-000000000000"
-  name               = "my-custom-role-definition"
-  scope              = data.azurerm_subscription.primary.id
+resource "azurerm_role_definition" "role_assignment_contributor" {
+    name  = "Role Assignment Owner"
+    scope = data.azurerm_subscription.primary.id
+    description = "A role designed for writing and deleting role assignments"
 
-  permissions {
-    actions     = ["Microsoft.Resources/subscriptions/resourceGroups/write"]
-    not_actions = []
-  }
+    permissions {
+        actions = [
+            "Microsoft.Authorization/roleAssignments/write",
+            "Microsoft.Authorization/roleAssignments/delete",
+        ]
+        not_actions = []
+    }
 
-  assignable_scopes = [
-    data.azurerm_subscription.primary.id,
-  ]
+    assignable_scopes = [
+        data.azurerm_subscription.primary.id
+    ]
 }
 
-resource "azurerm_role_assignment" "assignrolecustom" {
-  name               = "00000000-0000-0000-0000-000000000000"
+resource "azurerm_role_assignment" "assigncustomrole" {
   scope              = data.azurerm_subscription.primary.id
-  role_definition_id = azurerm_role_definition.customrole.role_definition_resource_id
+  role_definition_id = azurerm_role_definition.role_assignment_contributor.role_definition_resource_id
   principal_id       = data.azurerm_client_config.clientconfig.object_id
 }
 
