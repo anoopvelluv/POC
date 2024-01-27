@@ -19,6 +19,12 @@ data "azurerm_subscription" "primary" {
 data "azurerm_client_config" "clientconfig" {
 }
 
+resource "azurerm_role_assignment" "basic" {
+  scope                = data.azurerm_subscription.primary.id
+  role_definition_name = "Writer"
+  principal_id         = data.azurerm_client_config.clientconfig.object_id
+}
+
 resource "azurerm_role_assignment" "assignrole" {
   scope                = data.azurerm_container_registry.acr.id
   role_definition_name = "acrpull"
