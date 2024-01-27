@@ -19,10 +19,26 @@ data "azurerm_subscription" "primary" {
 data "azurerm_client_config" "clientconfig" {
 }
 
-resource "azurerm_role_assignment" "basic" {
-  scope                = data.azurerm_subscription.primary.id
-  role_definition_name = "Contributor"
-  principal_id         = data.azurerm_client_config.clientconfig.object_id
+resource "azurerm_role_definition" "customrole" {
+  role_definition_id = "00000000-0000-0000-0000-000000000000"
+  name               = "my-custom-role-definition"
+  scope              = data.azurerm_subscription.primary.id
+
+  permissions {
+    actions     = ["Microsoft.Resources/subscriptions/resourceGroups/write"]
+    not_actions = []
+  }
+
+  assignable_scopes = [
+    data.azurerm_subscription.primary.id,
+  ]
+}
+
+resource "azurerm_role_assignment" "assignrolecustom" {
+  name               = "00000000-0000-0000-0000-000000000000"
+  scope              = data.azurerm_subscription.primary.id
+  role_definition_id = azurerm_role_definition.customrole.role_definition_resource_id
+  principal_id       = data.azurerm_client_config.clientconfig.object_id
 }
 
 resource "azurerm_role_assignment" "assignrole" {
