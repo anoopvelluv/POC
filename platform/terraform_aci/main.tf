@@ -53,6 +53,7 @@ resource "azurerm_role_assignment" "assignrole" {
   scope                = data.azurerm_container_registry.acr.id
   role_definition_name = "AcrPull"
   principal_id         = data.azurerm_client_config.clientconfig.object_id
+  skip_service_principal_aad_check = true
 }
 
 resource "azurerm_container_group" "aci" {
