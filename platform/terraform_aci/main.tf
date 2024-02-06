@@ -68,10 +68,6 @@ resource "azurerm_container_group" "aci" {
     identity_ids = ["/subscriptions/7122eee9-66c8-4e94-8a9a-56733a94bc91/resourceGroups/${data.azurerm_resource_group.rg.name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${azurerm_user_assigned_identity.identity.name}"]
   }
 
-   role_based_access_control {
-    enabled = true
-  }
-
   container {
     name   = "pocimagedemo"
     image  = "${data.azurerm_container_registry.acr.login_server}/simulationdeploypocacr:${var.build_id}"
