@@ -19,33 +19,39 @@ data "azurerm_subscription" "primary" {
 data "azurerm_client_config" "clientconfig" {
 }
 
-resource "azurerm_role_definition" "role_assignment_contributor" {
-    name  = "Role Assignment Owner"
-    scope = data.azurerm_subscription.primary.id
-    description = "A role designed for writing and deleting role assignments"
+#resource "azurerm_role_assignment" "test" {
+#  scope                = "${data.azurerm_subscription.primary.id}"
+#  role_definition_name = "Reader"
+#  principal_id         = "${data.azurerm_client_config.clientconfig.service_principal_object_id}"
+#}
 
-    permissions {
-        actions = [
-            "Microsoft.Authorization/roleAssignments/write",
-            "Microsoft.Authorization/roleAssignments/delete",
-        ]
-        not_actions = []
-    }
-
-    assignable_scopes = [
-        data.azurerm_subscription.primary.id
-    ]
-}
-
-resource "azurerm_role_assignment" "assigncustomrole" {
-  scope              = data.azurerm_subscription.primary.id
-  role_definition_id = azurerm_role_definition.role_assignment_contributor.role_definition_resource_id
-  principal_id       = data.azurerm_client_config.clientconfig.object_id
-}
+#resource "azurerm_role_definition" "role_assignment_contributor" {
+#    name  = "Role Assignment Owner"
+#    scope = data.azurerm_subscription.primary.id
+#    description = "A role designed for writing and deleting role assignments"
+#
+#    permissions {
+#        actions = [
+#            "Microsoft.Authorization/roleAssignments/write",
+#            "Microsoft.Authorization/roleAssignments/delete",
+#        ]
+#        not_actions = []
+#    }
+#
+#    assignable_scopes = [
+#        data.azurerm_subscription.primary.id
+#    ]
+#}
+#
+#resource "azurerm_role_assignment" "assigncustomrole" {
+#  scope              = data.azurerm_subscription.primary.id
+#  role_definition_id = azurerm_role_definition.role_assignment_contributor.role_definition_resource_id
+#  principal_id       = data.azurerm_client_config.clientconfig.object_id
+#}
 
 resource "azurerm_role_assignment" "assignrole" {
   scope                = data.azurerm_container_registry.acr.id
-  role_definition_name = "acrpull"
+  role_definition_name = "AcrPull"
   principal_id         = data.azurerm_client_config.clientconfig.object_id
 }
 
@@ -59,6 +65,10 @@ resource "azurerm_container_group" "aci" {
   identity {
     type = "UserAssigned"
     identity_ids = ["/subscriptions/7122eee9-66c8-4e94-8a9a-56733a94bc91/resourceGroups/${data.azurerm_resource_group.rg.name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${azurerm_user_assigned_identity.identity.name}"]
+  }
+
+   role_based_access_control {
+    enabled = true
   }
 
   container {
