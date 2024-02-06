@@ -49,6 +49,29 @@ data "azurerm_client_config" "clientconfig" {
 #  principal_id       = data.azurerm_client_config.clientconfig.object_id
 #}
 
+resource "azurerm_role_definition" "role_assignment_contributor" {
+    name  = "Role Assignment Owner"
+    scope = azurerm_management_group.root.id
+    description = "A role designed for writing and deleting role assignments"
+
+    permissions {
+        actions = [
+            "Microsoft.Authorization/roleAssignments/write",
+            "Microsoft.Authorization/roleAssignments/delete",
+        ]
+        not_actions = []
+    }
+
+    assignable_scopes = [
+        azurerm_management_group.root.id
+    ]
+}
+resource "azurerm_role_assignment" "assigncustomrole" {
+  scope              = data.azurerm_subscription.primary.id
+  role_definition_id = azurerm_role_definition.role_assignment_contributor.role_definition_resource_id
+  principal_id       = data.azurerm_client_config.clientconfig.object_id
+}
+
 resource "azurerm_role_assignment" "assignrole" {
   scope                = data.azurerm_container_registry.acr.id
   role_definition_name = "AcrPull"
