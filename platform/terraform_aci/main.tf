@@ -59,8 +59,7 @@ resource "azurerm_container_group" "aci" {
 
   identity {
     type = "UserAssigned"
-#    identity_ids = ["/subscriptions/7122eee9-66c8-4e94-8a9a-56733a94bc91/resourceGroups/${data.azurerm_resource_group.rg.name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${azurerm_user_assigned_identity.identity.name}"]
-    identity_ids = [azurerm_user_assigned_identity.identity.principal_id]
+    identity_ids = ["/subscriptions/7122eee9-66c8-4e94-8a9a-56733a94bc91/resourceGroups/${data.azurerm_resource_group.rg.name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${azurerm_user_assigned_identity.identity.name}"]
   }
 
   container {
