@@ -10,6 +10,6 @@ RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements.txt
 
 RUN pip install greenlet
 
-COPY . /app
+COPY project/ /app
 
 CMD ["python","simulation.py"]

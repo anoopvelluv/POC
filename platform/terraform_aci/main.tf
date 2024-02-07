@@ -7,17 +7,17 @@ data "azurerm_container_registry" "acr" {
   resource_group_name = data.azurerm_resource_group.rg.name
 }
 
-resource "azurerm_user_assigned_identity" "identity" {
-  location            = var.location
-  name                = "identityACI"
-  resource_group_name = data.azurerm_resource_group.rg.name
-}
+#resource "azurerm_user_assigned_identity" "identity" {
+#  location            = var.location
+#  name                = "identityACI"
+#  resource_group_name = data.azurerm_resource_group.rg.name
+#}
 
-data "azurerm_subscription" "primary" {
-}
-
-data "azurerm_client_config" "clientconfig" {
-}
+#data "azurerm_subscription" "primary" {
+#}
+#
+#data "azurerm_client_config" "clientconfig" {
+#}
 
 #resource "azurerm_role_definition" "role_assignment_contributor" {
 #    name  = "Role Assignment Owner"
@@ -66,6 +66,8 @@ resource "azurerm_container_group" "aci" {
     password = data.azurerm_container_registry.acr.admin_password
     server   = data.azurerm_container_registry.acr.login_server
   }
+
+  restart_policy = "Never"
 
   container {
     name   = "pocimagedemo"
