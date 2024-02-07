@@ -19,39 +19,9 @@ data "azurerm_subscription" "primary" {
 data "azurerm_client_config" "clientconfig" {
 }
 
-#resource "azurerm_role_assignment" "test" {
-#  scope                = "${data.azurerm_subscription.primary.id}"
-#  role_definition_name = "Reader"
-#  principal_id         = "${data.azurerm_client_config.clientconfig.service_principal_object_id}"
-#}
-
-#resource "azurerm_role_definition" "role_assignment_contributor" {
-#    name  = "Role Assignment Owner"
-#    scope = data.azurerm_subscription.primary.id
-#    description = "A role designed for writing and deleting role assignments"
-#
-#    permissions {
-#        actions = [
-#            "Microsoft.Authorization/roleAssignments/write",
-#            "Microsoft.Authorization/roleAssignments/delete",
-#        ]
-#        not_actions = []
-#    }
-#
-#    assignable_scopes = [
-#        data.azurerm_subscription.primary.id
-#    ]
-#}
-#
-#resource "azurerm_role_assignment" "assigncustomrole" {
-#  scope              = data.azurerm_subscription.primary.id
-#  role_definition_id = azurerm_role_definition.role_assignment_contributor.role_definition_resource_id
-#  principal_id       = data.azurerm_client_config.clientconfig.object_id
-#}
-
 resource "azurerm_role_definition" "role_assignment_contributor" {
     name  = "Role Assignment Owner"
-    scope = azurerm_management_group.root.id
+    scope = data.azurerm_subscription.primary.id
     description = "A role designed for writing and deleting role assignments"
 
     permissions {
@@ -63,9 +33,10 @@ resource "azurerm_role_definition" "role_assignment_contributor" {
     }
 
     assignable_scopes = [
-        azurerm_management_group.root.id
+        data.azurerm_subscription.primary.id
     ]
 }
+
 resource "azurerm_role_assignment" "assigncustomrole" {
   scope              = data.azurerm_subscription.primary.id
   role_definition_id = azurerm_role_definition.role_assignment_contributor.role_definition_resource_id
