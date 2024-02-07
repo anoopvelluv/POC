@@ -57,9 +57,14 @@ resource "azurerm_container_group" "aci" {
   ip_address_type     = "Public"
   os_type= "Linux"
 
-  identity {
-    type = "UserAssigned"
-    identity_ids = ["/subscriptions/7122eee9-66c8-4e94-8a9a-56733a94bc91/resourceGroups/${data.azurerm_resource_group.rg.name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${azurerm_user_assigned_identity.identity.name}"]
+#  identity {
+#    type = "UserAssigned"
+#    identity_ids = ["/subscriptions/7122eee9-66c8-4e94-8a9a-56733a94bc91/resourceGroups/${data.azurerm_resource_group.rg.name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${azurerm_user_assigned_identity.identity.name}"]
+#  }
+   image_registry_credential {
+    username = data.azurerm_container_registry.acr.admin_username
+    password = data.azurerm_container_registry.acr.admin_password
+    server   = data.azurerm_container_registry.acr.login_server
   }
 
   container {
